@@ -12,7 +12,7 @@ const SellActionWindow = ({ uid }) => {
 
   const generalContext = useContext(GeneralContext);
 
-  const handleSellClick = () => {
+  const handleSellClick = async () => {
     if (
       !stockQuantity ||
       !stockPrice ||
@@ -22,12 +22,22 @@ const SellActionWindow = ({ uid }) => {
       alert("Please enter valid quantity and price.");
       return;
     }
-    axios.post("http://localhost:3002/newOrder", {
-      name: uid,
-      qty: stockQuantity,
-      price: stockPrice,
-      mode: "SELL",
-    });
+    try {
+      const res = await axios.post(
+        "http://localhost:3002/orders/newOrder",
+        {
+          name: uid,
+          qty: stockQuantity,
+          price: stockPrice,
+          mode: "SELL",
+        },
+        { withCredentials: true },
+      );
+
+      alert(res.data.message || "Stock sold successfully");
+    } catch (err) {
+      alert(err.response?.data?.message || "Something went wrong");
+    }
 
     generalContext.closeSellWindow();
   };

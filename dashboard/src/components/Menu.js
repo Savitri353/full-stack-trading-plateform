@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 
-const Menu = () => {
+const Menu = ({user}) => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
@@ -66,6 +66,7 @@ const Menu = () => {
               <p style={{fontSize:"1rem"}} className={selectedMenu === 3 ? activeMenuClass : menuClass}>
                 Positions
               </p>
+              
             </Link>
           
           </li>
@@ -101,7 +102,7 @@ const Menu = () => {
      
         <div className="profile" onClick={handleProfileClick}>
           <div className="avatar">ZU</div>
-          <p className="username">USERID</p>
+          <p className="username">{user?.username || "User"}</p>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ const Orders = () => {
   const [allOrders, setAllOrders] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3002/allOrders").then((res) => {
+    axios.get("http://localhost:3002/orders/allOrders", {withCredentials: true}).then((res) => {
       console.log(res.data);
       setAllOrders(res.data);
     });
@@ -23,6 +23,8 @@ const Orders = () => {
             <th>Qty.</th>
             <th>Price</th>
             <th>Mode</th>
+            <th>Status</th>
+            
           </tr>
           
           {allOrders.map((order, index) => {
@@ -33,7 +35,7 @@ const Orders = () => {
                 <td>{order.qty}</td>
                 <td>{order.price}</td>
                 <td>{order.mode}</td>
-              
+                <td><span className={`status ${order.status?.toLowerCase()}`}>{order.status}</span></td>
               </tr>
             );
           })}

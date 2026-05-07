@@ -17,11 +17,47 @@ export const watchlist = [
     percent: "-0.25%",
     isDown: true,
   },
-   {
-    name: "TCS",
-    price: 3194.8,
-    percent: "0.25%",
+  {
+    name: "RELIANCE",
+    price: 2850.5,
+    percent: "0.75%",
     isDown: false,
+  },
+  {
+    name: "HDFCBANK",
+    price: 1625.2,
+    percent: "-0.40%",
+    isDown: true,
+  },
+  {
+    name: "ICICIBANK",
+    price: 940.3,
+    percent: "1.10%",
+    isDown: false,
+  },
+  {
+    name: "SBIN",
+    price: 610.4,
+    percent: "0.55%",
+    isDown: false,
+  },
+  {
+    name: "WIPRO",
+    price: 455.9,
+    percent: "-0.80%",
+    isDown: true,
+  },
+  {
+    name: "AXISBANK",
+    price: 1020.7,
+    percent: "0.30%",
+    isDown: false,
+  },
+  {
+    name: "LT",
+    price: 3650.0,
+    percent: "-0.15%",
+    isDown: true,
   },
 ];
 

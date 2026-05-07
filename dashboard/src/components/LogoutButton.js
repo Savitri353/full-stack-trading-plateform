@@ -3,7 +3,7 @@ import axios from "axios";
 const LogoutButton = () => {
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:3002/logout", {
+      await axios.get("http://localhost:3002/auth/logout", {
         withCredentials: true,
       });
 

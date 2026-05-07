@@ -1,63 +1,110 @@
-const {OrdersModel} = require("../model/OrdersModel");
-const {HoldingsModel} = require("../model/HoldingsModel");
+const { OrdersModel } = require("../model/OrdersModel");
+const { HoldingsModel } = require("../model/HoldingsModel");
+const Funds = require("../model/FundingsModel");
 
 module.exports.newOrder = async (req, res) => {
-  const { name, qty, price, mode } = req.body;
-
   try {
-    // Save the order first
-    let newOrder = new OrdersModel({ name, qty, price, mode });
+    const { name, qty, price, mode } = req.body;
+    const userId = req.user.id;
+
+    let newOrder = new OrdersModel({
+      name,
+      qty,
+      price,
+      mode,
+      status: "PENDING",
+      user: userId,
+    });
+
     await newOrder.save();
 
-    if (mode === "BUY") {
+    const existing = await HoldingsModel.findOne({ name, user: userId });
+    const fund = await Funds.findOne({ user: userId });
 
-          // Check if the stock exists in holdings
-    const existing = await HoldingsModel.findOne({ name });
+    if (mode === "BUY") {
+      const orderCost = price * qty;
+
+      //  Check funds
+      if (!fund || fund.balance < orderCost) {
+        newOrder.status = "REJECTED";
+        await newOrder.save();
+        return res.json({ message: "Insufficient funds" });
+      }
+
+      // Deduct funds
+      fund.balance -= orderCost;
+      fund.usedMargin += orderCost;
+      await fund.save();
+
+      //update holdings
       if (existing) {
-        // Calculate new average and quantity
         const totalQty = existing.qty + qty;
-        const totalCost=existing.avg * existing.qty + price * qty;
-        const newAvg = (totalCost) / totalQty;
-         
+        const totalCost = existing.avg * existing.qty + price * qty;
 
         existing.qty = totalQty;
-        existing.avg = newAvg;
-        existing.price = price; // update LTP
+        existing.avg = totalCost / totalQty;
+        existing.price = price;
+
         await existing.save();
       } else {
-        // Add new stock to holdings
-        const newHolding = new HoldingsModel({
+        await HoldingsModel.create({
           name,
           qty,
           avg: price,
           price,
-          net: "+0%",   // can be updated later
-          day: "+0%",   // can be updated later
+          net: 0,
+          day: 0,
+          user: userId,
         });
-        await newHolding.save();
       }
-    } else if (mode === "SELL") {
-      if (existing) {
-        if (existing.qty > qty) {
-          // Reduce quantity
-          existing.qty -= qty;
-          existing.price = price;
-          await existing.save();
-        } else {
-          // Sold all → remove from holdings
-          await HoldingsModel.deleteOne({ name });
-        }
-      }
+
+      newOrder.status = "COMPLETED";
     }
 
-    res.status(200).json({ success: true, message: "Order placed & holdings updated" });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, message: "Something went wrong" });
-  }
-}
+    //sell
+    else if (mode === "SELL") {
+      if (!existing || existing.qty < qty) {
+        newOrder.status = "REJECTED";
+        await newOrder.save();
+        return res.status(400).json({
+          success: false,
+          message: "You do not own this stock",
+        });
+      }
 
-module.exports.allOrders = async (req, res)=> {
-  let allOrders = await OrdersModel.find({});
-  res.json(allOrders);
-}
+      //Add funds after selling
+      const sellValue = price * qty;
+      if (fund) {
+        fund.balance += sellValue;
+        fund.usedMargin = Math.max(0, fund.usedMargin - existing.avg * qty);
+        await fund.save();
+      }
+
+      if (existing.qty === qty) {
+        await HoldingsModel.deleteOne({ name, user: userId });
+      } else {
+        existing.qty -= qty;
+        existing.price = price;
+        await existing.save();
+      }
+
+      newOrder.status = "COMPLETED";
+    }
+
+    await newOrder.save();
+
+    res.status(200).json({ success: true, message: "Order processed" });
+  } catch (err) {
+    res.status(500).json({ success: false });
+  }
+};
+
+module.exports.allOrders = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    let allOrders = await OrdersModel.find({ user: userId });
+    res.json(allOrders);
+  } catch (err) {
+    res.status(500).json({ success: false });
+  }
+};

@@ -70,7 +70,7 @@ const WatchlistItem = ({ stock }) => {
     setShowWatchlistActions(true);
   };
 
-  const handleMouseLeave = (e) => {
+  const handleMouseLeave = (e) => { 
     setShowWatchlistActions(false);
   };
 
@@ -81,9 +81,9 @@ const WatchlistItem = ({ stock }) => {
         <div className="itemInfo">
           <span className="percent"> {stock.percent}</span>
           {stock.isDown ? (
-            <KeyboardArrowDownIcon />
+            <KeyboardArrowDownIcon className="down" />
           ) : (
-            <KeyboardControlKeyIcon />
+            <KeyboardControlKeyIcon  className="up" />
           )}
           <span className="price"> {stock.price}</span>
         </div>

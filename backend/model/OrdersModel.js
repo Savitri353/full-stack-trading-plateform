@@ -1,7 +1,22 @@
-const { model } = require('mongoose'); 
+const mongoose = require("mongoose");
 
-const {OrdersSchema} = require("../schemas/OrdersSchema");
+const OrdersSchema = mongoose.Schema({
+  name: String,
+  qty: Number,
+  price: Number,
+  mode: String,
 
-const OrdersModel = new model("order", OrdersSchema);
+  status: {
+    type: String,
+    enum: ["PENDING", "COMPLETED", "REJECTED"],
+    default: "PENDING",
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+});
+const OrdersModel = mongoose.model("order", OrdersSchema);
 
-module.exports = { OrdersModel }
+module.exports = { OrdersModel };

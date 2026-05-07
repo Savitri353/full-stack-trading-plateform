@@ -1,6 +1,21 @@
-const {model} = require("mongoose");
-const {PositionsSchema} = require('../schemas/PositionsSchema.js');
+const mongoose = require("mongoose");
 
-const PositionsModel = new model('position', PositionsSchema );
+const PositionsSchema = mongoose.Schema({
+  product: String,
+  name: String,
+  qty: Number,
+  avg: Number,
+  price: Number,
+  net: String,
+  day: String,
+  isLoss: Boolean,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+});
 
-module.exports = {PositionsModel};
+const PositionsModel = mongoose.model("position", PositionsSchema);
+
+module.exports = { PositionsModel };

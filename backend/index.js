@@ -10,8 +10,9 @@ const authRoute = require("./Routes/AuthRoute");
 const holdingRoute = require("./Routes/HoldingRoute");
 const orderRoute = require("./Routes/OrderRoute");
 const positionsRoute = require("./Routes/PositionRoute");
+const fundsRoute = require("./Routes/FundsRoute");
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3004;
 const url = process.env.MONGO_URL;
 
 const app = express();
@@ -27,16 +28,17 @@ mongoose
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"], // ❗ NOT wildcard (*)
-    credentials: true, // ✅ Allow cookies
+    origin: ["http://localhost:3000", "http://localhost:3001"], //NOT wildcard (*)
+    credentials: true, // Allow cookies
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 app.use(bodyParser.json());
-app.use("/", authRoute);
-app.use("/", holdingRoute);
-app.use("/", orderRoute);
-app.use("/", positionsRoute);
+app.use("/auth", authRoute);
+app.use("/holdings", holdingRoute);
+app.use("/orders", orderRoute);
+app.use("/positions", positionsRoute);
+app.use("/funds", fundsRoute);
 
 // app.get("/addHoldings", async (req, res) => {
 //   let tempHoldings = [

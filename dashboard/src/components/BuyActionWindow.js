@@ -13,21 +13,28 @@ const BuyActionWindow = ({ uid }) => {
   const generalContext = useContext(GeneralContext);
   //
   const handleBuyClick = () => {
-      if (!stockQuantity || !stockPrice || stockQuantity <= 0 || stockPrice <= 0) {
-    alert("Please enter valid quantity and price.");
-    return; 
-  }
-    axios.post("http://localhost:3002/newOrder", {
-      name:uid,
-      qty: stockQuantity,
-      price: stockPrice,
-      mode: "BUY", 
-    });
+    if (
+      !stockQuantity ||
+      !stockPrice ||
+      stockQuantity <= 0 ||
+      stockPrice <= 0
+    ) {
+      alert("Please enter valid quantity and price.");
+      return;
+    }
+    axios.post(
+      "http://localhost:3002/orders/newOrder",
+      {
+        name: uid,
+        qty: stockQuantity,
+        price: stockPrice,
+        mode: "BUY",
+      },
+      { withCredentials: true },
+    );
 
     generalContext.closeBuyWindow();
   };
-
-  
 
   const handleCancelClick = () => {
     generalContext.closeBuyWindow();
@@ -63,9 +70,11 @@ const BuyActionWindow = ({ uid }) => {
       </div>
 
       <div className="buttons">
-        <span>Margin required #8377; 140.65</span>
+        <span>Margin required 140.65 Rs.</span>
         <div>
-          <Link className="btn btn-blue" onClick={handleBuyClick}>Buy</Link>
+          <Link className="btn btn-blue" onClick={handleBuyClick}>
+            Buy
+          </Link>
           <Link to="" className="btn btn-grey" onClick={handleCancelClick}>
             Cancel
           </Link>

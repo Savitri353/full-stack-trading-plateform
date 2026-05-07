@@ -7,7 +7,7 @@ const Positions = () => {
     const [allPositions, setAllPositions] = useState([]);
 
     useEffect(()=> {
-      axios.get("http://localhost:3002/allPositions").then((res)=> {
+      axios.get("http://localhost:3002/positions/allPositions", {withCredentials: true}).then((res)=> {
         console.log(res.data);
         setAllPositions(res.data);
       })
@@ -41,10 +41,11 @@ const Positions = () => {
                 <td>{stock.name}</td>
                 <td>{stock.qty}</td>
                 <td>{stock.avg.toFixed(0)}</td>
+                <td>{stock.price.toFixed(2)}</td>
                 <td className={profClass}>
                   {(curValue - stock.avg * stock.qty).toFixed(2)}
                 </td>
-                <td className={profClass}>{stock.net}</td>
+                {/* <td className={profClass}>{stock.net}</td> */}
                 <td className={dayClass}>{stock.day}</td>
               </tr>
             );
