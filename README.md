@@ -141,7 +141,9 @@ Handles:
 # Screenshots
 
 ## Landing Page
-_Add screenshot here_
+
+<img width="1900" height="853" alt="image" src="https://github.com/user-attachments/assets/258231ff-24e6-4f96-9ac2-ddf1793f0514" />
+
 
 ## Login Page
 _Add screenshot here_
