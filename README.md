@@ -152,13 +152,15 @@ Handles:
 
 <img width="1916" height="865" alt="image" src="https://github.com/user-attachments/assets/2dead09e-e2ef-452b-b4b9-0ee9f535bb49" />
 
-<img width="1919" height="871" alt="image" src="https://github.com/user-attachments/assets/21ecb7cb-ec60-4387-a3e7-86f615a352b9" />
+<img width="1919" height="862" alt="image" src="https://github.com/user-attachments/assets/2f9cf8e2-becc-49b2-887d-1347ef4864dd" />
+
 
 ## Holdings
 
 <img width="1919" height="869" alt="image" src="https://github.com/user-attachments/assets/702c2cf8-023c-47bf-a683-f1dc7638522d" />
 
-<img width="1919" height="867" alt="image" src="https://github.com/user-attachments/assets/36b839dc-beb0-47b9-b1c9-d272c2d02366" />
+<img width="1919" height="867" alt="image" src="https://github.com/user-attachments/assets/6a0db2fb-53b0-447b-aff5-b248c826e31c" />
+
 
 ## Funds Section
 
