@@ -144,27 +144,39 @@ Handles:
 
 <img width="1900" height="853" alt="image" src="https://github.com/user-attachments/assets/258231ff-24e6-4f96-9ac2-ddf1793f0514" />
 
-
 ## Login Page
-_Add screenshot here_
+
+<img width="1919" height="868" alt="image" src="https://github.com/user-attachments/assets/37d234bb-326a-4964-b063-2b4b7466d84c" />
 
 ## Dashboard
-_Add screenshot here_
+
+<img width="1916" height="865" alt="image" src="https://github.com/user-attachments/assets/2dead09e-e2ef-452b-b4b9-0ee9f535bb49" />
+
+<img width="1919" height="871" alt="image" src="https://github.com/user-attachments/assets/21ecb7cb-ec60-4387-a3e7-86f615a352b9" />
 
 ## Holdings
-_Add screenshot here_
+
+<img width="1919" height="869" alt="image" src="https://github.com/user-attachments/assets/702c2cf8-023c-47bf-a683-f1dc7638522d" />
+
+<img width="1919" height="867" alt="image" src="https://github.com/user-attachments/assets/36b839dc-beb0-47b9-b1c9-d272c2d02366" />
 
 ## Funds Section
-_Add screenshot here_
+
+<img width="1919" height="870" alt="image" src="https://github.com/user-attachments/assets/fa067273-cad3-4b42-8aa9-2d49b9c32048" />
+
+<img width="1919" height="860" alt="image" src="https://github.com/user-attachments/assets/f9dbbde9-2024-4d40-bb68-860853508504" />
+
+<img width="1919" height="871" alt="image" src="https://github.com/user-attachments/assets/9f9ae3c2-64c3-472c-beba-0a78b876a554" />
 
 ## Buy/Sell Window
-_Add screenshot here_
 
----
+<img width="1895" height="817" alt="image" src="https://github.com/user-attachments/assets/147e033c-bcb7-4f2e-a8ca-f9cabc21219f" />
+
+<img width="1894" height="849" alt="image" src="https://github.com/user-attachments/assets/ef548b86-59fb-47ff-9a8c-6ffcc954247b" />
 
 # Demo Video
 
-_Add your YouTube demo link here_
+https://youtu.be/tAL_nGGQFh8
 
 Example:
 
