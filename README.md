@@ -176,12 +176,10 @@ Handles:
 
 # Demo Video
 
-https://youtu.be/tAL_nGGQFh8
-
 Example:
 
 ```md
-[Watch Project Demo](https://youtu.be/your-video-link)
+[Watch Project Demo](https://youtu.be/tAL_nGGQFh8)
 ```
 
 ---
@@ -294,5 +292,4 @@ Through this project, I learned:
 # Author
 
 **Savitri Gamit**  
-3rd Year Information Technology Engineering Student  
 Passionate about Full-Stack Web Development and Problem Solving.
