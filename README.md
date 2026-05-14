@@ -191,7 +191,7 @@ Example:
 ## Clone Repository
 
 ```bash
-git clone <your-repository-link>
+git clone https://github.com/Savitri353/full-stack-trading-plateform.git
 ```
 
 ---
