@@ -180,9 +180,9 @@ Handles:
 
 Example:
 
-```md
+
 [Watch Project Demo](https://youtu.be/tAL_nGGQFh8)
-```
+
 
 ---
 
